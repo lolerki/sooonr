@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -82,6 +84,16 @@ class Address
      */
     private $id_user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Bill", mappedBy="idAddress")
+     */
+    private $bills;
+
+    public function __construct()
+    {
+        $this->bills = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -155,6 +167,37 @@ class Address
     public function setIdUser(?user $id_user): self
     {
         $this->id_user = $id_user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bill[]
+     */
+    public function getBills(): Collection
+    {
+        return $this->bills;
+    }
+
+    public function addBill(Bill $bill): self
+    {
+        if (!$this->bills->contains($bill)) {
+            $this->bills[] = $bill;
+            $bill->setIdAddress($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBill(Bill $bill): self
+    {
+        if ($this->bills->contains($bill)) {
+            $this->bills->removeElement($bill);
+            // set the owning side to null (unless already changed)
+            if ($bill->getIdAddress() === $this) {
+                $bill->setIdAddress(null);
+            }
+        }
 
         return $this;
     }

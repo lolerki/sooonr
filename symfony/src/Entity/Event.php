@@ -90,6 +90,16 @@ class Event
      */
     private $idUser;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Bill", mappedBy="idEvent")
+     */
+    private $bills;
+
+    public function __construct()
+    {
+        $this->bills = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -175,6 +185,37 @@ class Event
     public function setIdUser(?user $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bill[]
+     */
+    public function getBills(): Collection
+    {
+        return $this->bills;
+    }
+
+    public function addBill(Bill $bill): self
+    {
+        if (!$this->bills->contains($bill)) {
+            $this->bills[] = $bill;
+            $bill->setIdEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBill(Bill $bill): self
+    {
+        if ($this->bills->contains($bill)) {
+            $this->bills->removeElement($bill);
+            // set the owning side to null (unless already changed)
+            if ($bill->getIdEvent() === $this) {
+                $bill->setIdEvent(null);
+            }
+        }
 
         return $this;
     }

@@ -105,10 +105,16 @@ class User implements UserInterface
      */
     private $events;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Bill", mappedBy="idUser")
+     */
+    private $bills;
+
     public function __construct()
     {
         $this->createAt = new \DateTime('now');
         $this->events = new ArrayCollection();
+        $this->bills = new ArrayCollection();
     }
 
 
@@ -278,6 +284,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($event->getIdUser() === $this) {
                 $event->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bill[]
+     */
+    public function getBills(): Collection
+    {
+        return $this->bills;
+    }
+
+    public function addBill(Bill $bill): self
+    {
+        if (!$this->bills->contains($bill)) {
+            $this->bills[] = $bill;
+            $bill->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBill(Bill $bill): self
+    {
+        if ($this->bills->contains($bill)) {
+            $this->bills->removeElement($bill);
+            // set the owning side to null (unless already changed)
+            if ($bill->getIdUser() === $this) {
+                $bill->setIdUser(null);
             }
         }
 
