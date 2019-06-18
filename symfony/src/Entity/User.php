@@ -110,6 +110,11 @@ class User implements UserInterface
      */
     private $bills;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ArtistType", inversedBy="idUser")
+     */
+    private $artistType;
+
     public function __construct()
     {
         $this->createAt = new \DateTime('now');
@@ -317,6 +322,18 @@ class User implements UserInterface
                 $bill->setIdUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getArtistType(): ?ArtistType
+    {
+        return $this->artistType;
+    }
+
+    public function setArtistType(?ArtistType $artistType): self
+    {
+        $this->artistType = $artistType;
 
         return $this;
     }
