@@ -5,10 +5,38 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *           "get"={
+ *              "normalization_context"={"groups"={"artist_get_collection"}}
+ *          },
+ *          "post"={
+ *             "method"="POST",
+ *             "normalization_context"={"groups"={"artist_post_collection"}},
+ *             "access_control"="is_granted('ROLE_ADMIN')"
+ *          }
+ *     },
+ *     itemOperations={
+ *           "get"={
+ *             "method"="GET",
+ *             "normalization_context"={"groups"={"artist_get_item"}}
+ *            },
+ *           "put"={
+ *             "method"="PUT",
+ *             "normalization_context"={"groups"={"artist_put_item"}},
+ *             "access_control"="is_granted('ROLE_ADMIN')"
+ *           },
+ *           "delete"={
+ *             "method"="DELETE",
+ *             "normalization_context"={"groups"={"artist_delete_item"}},
+ *             "access_control"="is_granted('ROLE_ADMIN')"
+ *          }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ArtistTypeRepository")
  */
 class ArtistType
@@ -22,11 +50,13 @@ class ArtistType
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"artist_get_collection","artist_post_collection","artist_get_item","artist_put_item"})
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="artistType")
+     * @Groups({"artist_get_collection","artist_post_collection","artist_get_item"})
      */
     private $idUser;
 
