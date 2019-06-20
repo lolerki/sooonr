@@ -8,7 +8,34 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *           "get"={
+ *              "normalization_context"={"groups"={"demand_get_collection"}}
+ *          },
+ *          "post"={
+ *             "method"="POST",
+ *             "normalization_context"={"groups"={"demand_post_collection"}},
+ *             "access_control"="is_granted('ROLE_ADMIN')"
+ *          }
+ *     },
+ *     itemOperations={
+ *           "get"={
+ *             "method"="GET",
+ *             "normalization_context"={"groups"={"demand_get_item"}}
+ *            },
+ *           "put"={
+ *             "method"="PUT",
+ *             "normalization_context"={"groups"={"demand_put_item"}},
+ *             "access_control"="is_granted('ROLE_ADMIN')"
+ *           },
+ *           "delete"={
+ *             "method"="DELETE",
+ *             "normalization_context"={"groups"={"demand_delete_item"}},
+ *             "access_control"="is_granted('ROLE_ADMIN')"
+ *          }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\DemandsRepository")
  */
 class Demands
