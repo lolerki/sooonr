@@ -58,13 +58,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
-     * @Groups({"user_get_collection","user_post_collection","user_get_item","user_put_item", "profile_get_collection", "event_get_item", "event_post_collection"})
+     * @Groups({"user_get_collection","user_post_collection","user_get_item","user_put_item","profile_get_collection","event_get_item","event_post_collection","address_get_item","bill_get_item"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_get_collection","user_post_collection","user_put_item"})
+     * @Groups({"user_get_collection","user_post_collection","user_put_item","address_get_item","bill_get_item"})
      */
     private $firstName;
 
@@ -90,7 +90,7 @@ class User implements UserInterface
     /**
      * @var string
      * @ORM\Column(type="datetime")
-     * @Groups({"user_get_collection","user_post_collection"})
+     * @Groups({"user_get_collection","user_post_collection", "user_get_item"})
      */
     private $createAt;
 
@@ -102,16 +102,19 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="idUser")
+     * @Groups({"user_post_collection","user_put_item"})
      */
     private $events;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Bill", mappedBy="idUser")
+     * @Groups({"user_post_collection","user_put_item"})
      */
     private $bills;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ArtistType", inversedBy="idUser")
+     * @Groups({"user_post_collection","user_put_item", "user_get_item","address_get_item"})
      */
     private $artistType;
 
