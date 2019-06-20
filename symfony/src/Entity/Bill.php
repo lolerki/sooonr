@@ -48,25 +48,25 @@ class Bill
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"bill_get_collection","bill_post_collection","nill_get_item"})
+     * @Groups({"bill_get_collection","bill_post_collection","bill_get_item"})
      */
     private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bills")
-     * @Groups({"bill_get_collection","bill_post_collection","nill_get_item"})
+     * @Groups({"bill_get_collection","bill_post_collection","bill_get_item"})
      */
     private $idUser;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Address", inversedBy="bills")
-     * @Groups({"bill_get_collection","bill_post_collection","nill_get_item","bill_put_item"})
+     * @Groups({"bill_get_collection","bill_post_collection","bill_get_item","bill_put_item"})
      */
     private $idAddress;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="bills")
-     * @Groups({"bill_get_collection","bill_post_collection","nill_get_item"})
+     * @Groups({"bill_get_collection","bill_post_collection","bill_get_item"})
      */
     private $idEvent;
 

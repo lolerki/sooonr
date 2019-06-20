@@ -50,31 +50,31 @@ class Address
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item"})
+     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item","user_put_item"})
      */
     private $street;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item"})
+     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item","user_put_item"})
      */
     private $street_line2;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item"})
+     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item","user_put_item"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item"})
+     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item","user_put_item"})
      */
     private $zip_code;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item"})
+     * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item","user_put_item"})
      */
     private $country;
 
@@ -86,6 +86,7 @@ class Address
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Bill", mappedBy="idAddress")
+     * @Groups({"address_post_collection"})
      */
     private $bills;
 
