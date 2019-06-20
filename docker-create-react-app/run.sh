@@ -16,4 +16,4 @@ case $1 in
   *)
     exec "$@"
     ;;
-esacyarn start
+esac
