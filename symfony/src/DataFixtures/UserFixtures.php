@@ -24,15 +24,26 @@ class UserFixtures extends Fixture
 
         $user = (new User())
             ->setEmail('virgil@test.com')
-            ->setFirstName('Virgil')
+            ->setFirstName($faker->firstName)
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword(password_hash("Azerty@1", PASSWORD_BCRYPT));
+        $manager->persist($user);
+
+
 
    /**     $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
             'the_new_password'
         ));**/
 
+       $user = (new User())
+            ->setEmail('laetitita@rabois.com')
+            ->setFirstName('laetitia')
+            ->setPassword(password_hash("test", PASSWORD_BCRYPT));
+        $manager->persist($user);
+
         $manager->flush();
+
+
     }
 }
