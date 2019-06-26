@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Admin, Resource } from 'react-admin';
 import parseHydraDocumentation from '@api-platform/api-doc-parser/lib/hydra/parseHydraDocumentation';
 import { hydraClient, fetchHydra as baseFetchHydra  } from '@api-platform/admin';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+import MyLayout from './Components/Layouts/MyLayout';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { UserShow } from './Components/User/Show';
 import { UserEdit } from './Components/User/Edit';
@@ -86,9 +87,12 @@ export default class extends Component {
                    apiDocumentationParser={ apiDocumentationParser }
                    dataProvider= { dataProvider(this.state.api) }
                    theme={ theme }
+                   appLayout={ MyLayout }
             >
+                <Route exact path="/privacy-policy" component={() => <Redirect to={{ pathname: 'http://localhost:8080' }} />} />
+
                 <Resource name="users" list={ UserList } create={ UserCreate } show={ UserShow } edit={ UserEdit } title="Users"/>
-                <Resource name="addresses" list={ AddressList } create={ AddressCreate } show={ AddressShow } edit={ AddressEdit } title="Addresses"/>
+                <Resource name="addresses" list={ AddressList } create={ AddressCreate } show={ AddressShow } edit={ AddressEdit } title="SOOONR"/>
                 <Resource name="demands" list={ DemandsList } create={ DemandsCreate } show={ DemandsShow } edit={ DemandsEdit } title="Demands"/>
                 <Resource name="events" list={ EventsList } create={ EventsCreate } show={ EventsShow } edit={ EventsEdit } title="Events"/>
                 <Resource name="profile" list={ ProfileList } create={ ProfileCreate } show={ ProfileShow } edit={ ProfileEdit } title="Profile"/>

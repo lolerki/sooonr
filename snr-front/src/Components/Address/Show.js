@@ -1,14 +1,17 @@
 import React from 'react';
-import { Show, SimpleShowLayout, TextField, DateField, EmailField, EditButton } from 'react-admin';
+import { Show, SimpleShowLayout, TextField, EmailField, EditButton, NumberField } from 'react-admin';
 
 export const AddressShow = (props) => (
     <Show { ...props }>
         <SimpleShowLayout>
-            <TextField source="originId" label="ID"/>
-            <EmailField source="email" label="Email" />
-            <TextField source="name" label="Name"/>
-            <TextField source="phone" label="Phone"/>
-            <DateField source="createdAt" label="Date"/>
+            <NumberField source="id" label="ID"/>
+            <EmailField source="street" />
+            <TextField source="street_line2" />
+            <TextField source="city" />
+            <TextField source="zip_code" />
+            <TextField source="country" />
+            <TextField source="id_user" />
+            <TextField source="bills" />
             <EditButton />
         </SimpleShowLayout>
     </Show>
