@@ -8,6 +8,30 @@ import { UserShow } from './Components/User/Show';
 import { UserEdit } from './Components/User/Edit';
 import { UserCreate } from './Components/User/Create';
 import { UserList } from './Components/User/users';
+import { AddressShow } from './Components/Address/Show';
+import { AddressEdit } from './Components/Address/Edit';
+import { AddressCreate } from './Components/Address/Create';
+import { AddressList } from './Components/Address/List';
+import { DemandsShow } from './Components/Demands/Show';
+import { DemandsEdit } from './Components/Demands/Edit';
+import { DemandsCreate } from './Components/Demands/Create';
+import { DemandsList } from './Components/Demands/List';
+import { EventsShow } from './Components/Events/Show';
+import { EventsEdit } from './Components/Events/Edit';
+import { EventsCreate } from './Components/Events/Create';
+import { EventsList } from './Components/Events/List';
+import { ProfileShow } from './Components/Profile/Show';
+import { ProfileEdit } from './Components/Profile/Edit';
+import { ProfileCreate } from './Components/Profile/Create';
+import { ProfileList } from './Components/Profile/List';
+import { BillShow } from './Components/Bill/Show';
+import { BillEdit } from './Components/Bill/Edit';
+import { BillCreate } from './Components/Bill/Create';
+import { BillList } from './Components/Bill/List';
+import { ArtistTypeShow } from './Components/ArtistType/Show';
+import { ArtistTypeEdit } from './Components/ArtistType/Edit';
+import { ArtistTypeCreate } from './Components/ArtistType/Create';
+import { ArtistTypeList } from './Components/ArtistType/List';
 
 const theme = createMuiTheme({
     palette: {
@@ -62,10 +86,14 @@ export default class extends Component {
                    apiDocumentationParser={ apiDocumentationParser }
                    dataProvider= { dataProvider(this.state.api) }
                    theme={ theme }
-                   /* appLayout={ Layout } */
-
             >
                 <Resource name="users" list={ UserList } create={ UserCreate } show={ UserShow } edit={ UserEdit } title="Users"/>
+                <Resource name="addresses" list={ AddressList } create={ AddressCreate } show={ AddressShow } edit={ AddressEdit } title="Addresses"/>
+                <Resource name="demands" list={ DemandsList } create={ DemandsCreate } show={ DemandsShow } edit={ DemandsEdit } title="Demands"/>
+                <Resource name="events" list={ EventsList } create={ EventsCreate } show={ EventsShow } edit={ EventsEdit } title="Events"/>
+                <Resource name="profile" list={ ProfileList } create={ ProfileCreate } show={ ProfileShow } edit={ ProfileEdit } title="Profile"/>
+                <Resource name="bill" list={ BillList } create={ BillCreate } show={ BillShow } edit={ BillEdit } title="Bill"/>
+                <Resource name="artistType" list={ ArtistTypeList } create={ ArtistTypeCreate } show={ ArtistTypeShow } edit={ ArtistTypeEdit } title="ArtistType"/>
             </Admin>
         )
     }
