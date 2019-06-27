@@ -1,13 +1,15 @@
 import React from 'react';
-import { List, Datagrid, TextField, EmailField } from 'react-admin';
+import { List, Datagrid, TextField, NumberField } from 'react-admin';
 
 export const ProfileList = props => (
-    <List {...props}>
+    <List {...props} style={{marginTop: 50 + "px"}}>
         <Datagrid rowClick="edit">
-            <EmailField source="email" />
-            <TextField source="phone" />
-            <TextField source="website" />
-            <TextField source="company.name" />
+            <NumberField source="id" label="ID"/>
+            <TextField source="biography" />
+            <TextField source="about" />
+            <TextField source="stage_name" />
+            <TextField source="price" />
+            <TextField source="id_user" />
         </Datagrid>
     </List>
 );

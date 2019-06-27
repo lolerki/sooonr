@@ -44,45 +44,15 @@ export default function  MenuAppBar() {
         <div>
             <AppBar position="fixed" style={{width:  100 + "vw", background: "linear-gradient(to bottom right, #67b26f, #4ca2cd)"}}>
                 <Toolbar>
-                    <Typography variant="h6"  style={{textAlign: "left", width: 20 + "%" }}>
+                    <Typography style={{textAlign: "left", width: 20 + "%" }}>
                         <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080">SOOONR</a>
                     </Typography>
                     <ul style={{textAlign: "right", marginRight: 10 + "%", width: 70 + "%", listStyle: "none", color: "white"}}>
-                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080"><li style={{display: "inline-block", width: 20 + "%"}}>Booking</li></a>
-                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080"><li style={{display: "inline-block", width: 20 + "%"}}>A propos</li></a>
-                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080"><li style={{display: "inline-block", width: 20 + "%"}}>Contact</li></a>
-                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080"><li style={{display: "inline-block", width: 20 + "%"}}>Connexion</li></a>
-
+                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:3000/events"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>Booking</li></a>
+                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080/fr/about"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>A propos</li></a>
+                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080/fr/contact"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>Contact</li></a>
+                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080/fr/login"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>Connexion</li></a>
                     </ul>
-                        <div>
-                            <IconButton
-                                aria-label="Account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                            </Menu>
-                        </div>
 
                 </Toolbar>
             </AppBar>

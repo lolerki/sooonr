@@ -114,6 +114,11 @@ main {
     border-color: #000000;
 }
 
+.carre{
+    height: 300px;
+    width: 300px;
+}
+
 .button-line {
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;

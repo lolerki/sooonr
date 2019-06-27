@@ -2,7 +2,7 @@ import React from 'react';
 import { Edit, SimpleForm, DisabledInput, TextInput, email, ArrayInput, SimpleFormIterator, DateInput, SelectInput } from 'react-admin';
 
 export const UserEdit = (props) => (
-    <Edit {...props}>
+    <Edit {...props} style={{marginTop: 50 + "px"}}>
         <SimpleForm>
             <DisabledInput source="id" label="ID"/>
             <TextInput source="email" label="Email" validate={ email() } />
