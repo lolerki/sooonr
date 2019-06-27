@@ -1,6 +1,5 @@
 import { Layout, Sidebar } from 'react-admin';
 import React  from 'react';
-import MyAppBar from './MyAppBar';
 import MyMenuAppBar from './MyMenuAppBar';
 import MyMenu from './MyMenu';
 

@@ -95,9 +95,9 @@ export default class extends Component {
                 <Resource name="addresses" list={ AddressList } create={ AddressCreate } show={ AddressShow } edit={ AddressEdit } title="SOOONR"/>
                 <Resource name="demands" list={ DemandsList } create={ DemandsCreate } show={ DemandsShow } edit={ DemandsEdit } title="Demands"/>
                 <Resource name="events" list={ EventsList } create={ EventsCreate } show={ EventsShow } edit={ EventsEdit } title="Events"/>
-                <Resource name="profile" list={ ProfileList } create={ ProfileCreate } show={ ProfileShow } edit={ ProfileEdit } title="Profile"/>
-                <Resource name="bill" list={ BillList } create={ BillCreate } show={ BillShow } edit={ BillEdit } title="Bill"/>
-                <Resource name="artistType" list={ ArtistTypeList } create={ ArtistTypeCreate } show={ ArtistTypeShow } edit={ ArtistTypeEdit } title="ArtistType"/>
+                <Resource name="profiles" list={ ProfileList } create={ ProfileCreate } show={ ProfileShow } edit={ ProfileEdit } title="Profile"/>
+                <Resource name="bills" list={ BillList } create={ BillCreate } show={ BillShow } edit={ BillEdit } title="Bill"/>
+                <Resource name="artist_types" list={ ArtistTypeList } create={ ArtistTypeCreate } show={ ArtistTypeShow } edit={ ArtistTypeEdit } title="ArtistType"/>
             </Admin>
         )
     }

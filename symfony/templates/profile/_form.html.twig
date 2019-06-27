@@ -1,0 +1,17 @@
+<div class="container bordrad10 margtop white">
+    <div class="row">
+        <div class="col s12 white bordrad10 pad20 margtop">
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_label(form.biography, 'My Custom Task Label') }}
+                {{ form_row(form.biography) }}
+                {{ form_row(form.about) }}
+                {{ form_row(form.stage_name) }}
+                {{ form_row(form.price) }}
+                {{ form_widget(form.id_user, { 'value': "{{ app.user.id}}",'attr': {'class': 'browser-default'} }) }}
+                <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</div>

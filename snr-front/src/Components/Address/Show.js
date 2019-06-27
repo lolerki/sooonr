@@ -2,7 +2,7 @@ import React from 'react';
 import { Show, SimpleShowLayout, TextField, EmailField, EditButton, NumberField } from 'react-admin';
 
 export const AddressShow = (props) => (
-    <Show { ...props }>
+    <Show { ...props } style={{marginTop: 50 + "px"}}>
         <SimpleShowLayout>
             <NumberField source="id" label="ID"/>
             <EmailField source="street" />

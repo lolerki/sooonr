@@ -1,14 +1,11 @@
 import React from 'react';
-import { Show, SimpleShowLayout, TextField, DateField, EmailField, EditButton } from 'react-admin';
+import { Show, SimpleShowLayout, TextField, EditButton } from 'react-admin';
 
 export const ArtistTypeShow = (props) => (
-    <Show { ...props }>
+    <Show { ...props } style={{marginTop: 50 + "px"}}>
         <SimpleShowLayout>
-            <TextField source="originId" label="ID"/>
-            <EmailField source="email" label="Email" />
-            <TextField source="name" label="Name"/>
-            <TextField source="phone" label="Phone"/>
-            <DateField source="createdAt" label="Date"/>
+            <TextField source="name" />
+            <TextField source="idUser" />
             <EditButton />
         </SimpleShowLayout>
     </Show>

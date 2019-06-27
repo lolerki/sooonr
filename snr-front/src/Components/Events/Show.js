@@ -1,14 +1,17 @@
 import React from 'react';
-import { Show, SimpleShowLayout, TextField, DateField, EmailField, EditButton } from 'react-admin';
+import { Show, SimpleShowLayout, TextField, EmailField, EditButton } from 'react-admin';
 
 export const EventsShow = (props) => (
-    <Show { ...props }>
+    <Show { ...props } style={{marginTop: 50 + "px"}}>
         <SimpleShowLayout>
-            <TextField source="originId" label="ID"/>
-            <EmailField source="email" label="Email" />
-            <TextField source="name" label="Name"/>
-            <TextField source="phone" label="Phone"/>
-            <DateField source="createdAt" label="Date"/>
+            <EmailField source="title" />
+            <TextField source="description" />
+            <TextField source="createAt" />
+            <TextField source="dateEvent" />
+            <TextField source="linkGoogle" />
+            <TextField source="price" />
+            <TextField source="idUser" />
+            <TextField source="bills" />
             <EditButton />
         </SimpleShowLayout>
     </Show>
