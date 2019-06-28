@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Profile;
+use App\Entity\User;
 use App\Form\ProfileType;
 use App\Repository\ProfileRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,7 +35,17 @@ class ProfileController extends AbstractController
     public function new(Request $request): Response
     {
         $profile = new Profile();
-        $form = $this->createForm(ProfileType::class, $profile);
+        $user = $this->get('session')->get('loginUserId');
+        //$form = $this->createForm(ProfileType::class, $profile);
+        $form = $this->createFormBuilder($profile)
+            ->add('biography', TextareaType::class)
+            ->add('about', TextareaType::class)
+            ->add('stage_name', TextType::class)
+            ->add('price', TextType::class)
+            ->add('id_user', EntityType::class, [
+                'class' => User::class
+            ])
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -44,6 +58,7 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/new.html.twig', [
             'profile' => $profile,
+            'user' => $user,
             'form' => $form->createView(),
         ]);
     }

@@ -10,6 +10,7 @@ export const ProfileList = props => (
             <TextField source="stage_name" />
             <TextField source="price" />
             <TextField source="id_user" />
+
         </Datagrid>
     </List>
 );
