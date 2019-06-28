@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/profile")
@@ -21,6 +23,7 @@ class ProfileController extends AbstractController
 {
     /**
      * @Route("/", name="profile_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(ProfileRepository $profileRepository): Response
     {
@@ -31,6 +34,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/new", name="profile_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -65,6 +69,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}", name="profile_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Profile $profile): Response
     {
@@ -75,6 +80,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="profile_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Profile $profile): Response
     {
@@ -97,6 +103,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}", name="profile_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Profile $profile): Response
     {

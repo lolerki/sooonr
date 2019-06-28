@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/demands")
@@ -17,6 +19,7 @@ class DemandsController extends AbstractController
 {
     /**
      * @Route("/", name="demands_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(DemandsRepository $demandsRepository): Response
     {
@@ -27,6 +30,7 @@ class DemandsController extends AbstractController
 
     /**
      * @Route("/new", name="demands_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,7 @@ class DemandsController extends AbstractController
 
     /**
      * @Route("/{id}", name="demands_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Demands $demand): Response
     {
@@ -60,6 +65,7 @@ class DemandsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="demands_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Demands $demand): Response
     {
@@ -82,6 +88,7 @@ class DemandsController extends AbstractController
 
     /**
      * @Route("/{id}", name="demands_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Demands $demand): Response
     {

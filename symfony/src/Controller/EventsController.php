@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/events")
@@ -15,18 +17,20 @@ class EventsController extends AbstractController
 {
     /**
      * @Route("/", name="events_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
-   /* public function index(EventsRepository $eventsRepository): Response
+    public function index(EventsRepository $eventsRepository): Response
     {
         return $this->render('events/index.html.twig', [
             'events' => $eventsRepository->findAll(),
         ]);
-    }*/
+    }
 
     /**
      * @Route("/new", name="events_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
-/*    public function new(Request $request): Response
+    public function new(Request $request): Response
     {
         $event = new Events();
         $form = $this->createForm(EventsType::class, $event);
@@ -44,22 +48,24 @@ class EventsController extends AbstractController
             'event' => $event,
             'form' => $form->createView(),
         ]);
-    }*/
+    }
 
     /**
      * @Route("/{id}", name="events_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
- /*   public function show(Events $event): Response
+    public function show(Events $event): Response
     {
         return $this->render('events/show.html.twig', [
             'event' => $event,
         ]);
-    }*/
+    }
 
     /**
      * @Route("/{id}/edit", name="events_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
- /*   public function edit(Request $request, Events $event): Response
+    public function edit(Request $request, Events $event): Response
     {
         $form = $this->createForm(EventsType::class, $event);
         $form->handleRequest($request);
@@ -76,12 +82,13 @@ class EventsController extends AbstractController
             'event' => $event,
             'form' => $form->createView(),
         ]);
-    }*/
+    }
 
     /**
      * @Route("/{id}", name="events_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
- /*   public function delete(Request $request, Events $event): Response
+    public function delete(Request $request, Events $event): Response
     {
         if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -90,5 +97,5 @@ class EventsController extends AbstractController
         }
 
         return $this->redirectToRoute('events_index');
-    }*/
+    }
 }
