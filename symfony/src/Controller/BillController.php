@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/bill")
@@ -17,6 +19,7 @@ class BillController extends AbstractController
 {
     /**
      * @Route("/", name="bill_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(BillRepository $billRepository): Response
     {
@@ -27,6 +30,7 @@ class BillController extends AbstractController
 
     /**
      * @Route("/new", name="bill_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,7 @@ class BillController extends AbstractController
 
     /**
      * @Route("/{id}", name="bill_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Bill $bill): Response
     {
@@ -60,6 +65,7 @@ class BillController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="bill_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Bill $bill): Response
     {
@@ -82,6 +88,7 @@ class BillController extends AbstractController
 
     /**
      * @Route("/{id}", name="bill_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Bill $bill): Response
     {

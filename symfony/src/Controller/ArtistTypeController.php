@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/artist/type")
@@ -17,6 +19,7 @@ class ArtistTypeController extends AbstractController
 {
     /**
      * @Route("/", name="artist_type_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(ArtistTypeRepository $artistTypeRepository): Response
     {
@@ -27,6 +30,7 @@ class ArtistTypeController extends AbstractController
 
     /**
      * @Route("/new", name="artist_type_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,7 @@ class ArtistTypeController extends AbstractController
 
     /**
      * @Route("/{id}", name="artist_type_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(ArtistType $artistType): Response
     {
@@ -60,6 +65,7 @@ class ArtistTypeController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="artist_type_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, ArtistType $artistType): Response
     {
@@ -82,6 +88,7 @@ class ArtistTypeController extends AbstractController
 
     /**
      * @Route("/{id}", name="artist_type_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, ArtistType $artistType): Response
     {
