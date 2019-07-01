@@ -31,11 +31,6 @@ class Demands
     private $datedemand;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\TypeOfCustomer", inversedBy="demands")
-     */
-    private $typeofcustomer;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $message;
@@ -95,32 +90,6 @@ class Demands
     public function setDatedemand(\DateTimeInterface $datedemand): self
     {
         $this->datedemand = $datedemand;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|TypeOfCustomer[]
-     */
-    public function getTypeofcustomer(): Collection
-    {
-        return $this->typeofcustomer;
-    }
-
-    public function addTypeofcustomer(TypeOfCustomer $typeofcustomer): self
-    {
-        if (!$this->typeofcustomer->contains($typeofcustomer)) {
-            $this->typeofcustomer[] = $typeofcustomer;
-        }
-
-        return $this;
-    }
-
-    public function removeTypeofcustomer(TypeOfCustomer $typeofcustomer): self
-    {
-        if ($this->typeofcustomer->contains($typeofcustomer)) {
-            $this->typeofcustomer->removeElement($typeofcustomer);
-        }
 
         return $this;
     }
