@@ -7,12 +7,12 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-use App\Entity\Event;
+use App\Entity\Profile;
 use Faker;
 
-class EventFixtures extends Fixture implements DependentFixtureInterface
+
+class ProfileFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const EVENT_REFERENCE = 'eventFixture';
 
     public function load(ObjectManager $manager)
     {
@@ -21,23 +21,15 @@ class EventFixtures extends Fixture implements DependentFixtureInterface
 
         $user = $this->getReference(UserFixtures::USER_REFERENCE);
 
-        for ($i = 0; $i < 10; $i++) {
-
-        $event = (new Event())
-            ->setTitle($faker->text($maxNbChars = 50)  )
-            ->setDescription($faker->text)
-            ->setDateEvent($faker->dateTime)
-            ->setCreateAt($faker->dateTime)
+        $profile = (new Profile())
             ->setPrice($faker->numberBetween($min = 10, $max = 2000))
-            ->setLinkGoogle($faker->url)
+            ->setBiography($faker->text)
+            ->setStageName($faker->text($maxNbChars = 10))
+            ->setAbout($faker->text)
             ->setIdUser($user);
-        $manager->persist($event);
-
-        }
+        $manager->persist($profile);
 
         $manager->flush();
-
-        $this->addReference(self::EVENT_REFERENCE, $event);
 
     }
 
