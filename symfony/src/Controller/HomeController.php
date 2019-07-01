@@ -2,14 +2,13 @@
 
 namespace App\Controller;
 
+use App\Repository\ProfileRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Demands;
 use App\Repository\DemandsRepository;
-//use App\Entity\Events;
-use App\Form\EventsType;
-//use App\Repository\EventsRepository;
+use App\Repository\EventRepository;
+
 
 
 
@@ -25,11 +24,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_index")
      */
-    public function indexAction(): Response
+    public function indexAction(EventRepository $eventRepository, ProfileRepository $profileRepository): Response
     {
 
-
-        return $this->render('home/home.html.twig');
+        return $this->render('home/home.html.twig', [
+            'events' => $eventRepository->findAll(),
+            'profiles' => $profileRepository->findAll(),
+        ]);
     }
 
     /**

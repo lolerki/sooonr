@@ -162,6 +162,10 @@
                 <source>title.edit_user</source>
                 <target>Edit user</target>
             </trans-unit>
+            <trans-unit id="title.booking_user">
+                            <source>title.booking</source>
+                            <target>Booking</target>
+            </trans-unit>
             <trans-unit id="title.change_password">
                 <source>title.change_password</source>
                 <target>Change password</target>

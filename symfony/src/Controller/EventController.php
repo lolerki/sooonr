@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
-use App\Form\EventsType;
+use App\Entity\Event;
+use App\Form\EventType;
+use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,29 +13,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 /**
- * @Route("/events")
+ * @Route("/event")
  */
-class EventsController extends AbstractController
+class EventController extends AbstractController
 {
     /**
-     * @Route("/", name="events_index", methods={"GET"})
+     * @Route("/", name="event_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(EventsRepository $eventsRepository): Response
+    public function index(EventRepository $eventRepository): Response
     {
-        return $this->render('events/index.html.twig', [
-            'events' => $eventsRepository->findAll(),
+        return $this->render('event/index.html.twig', [
+            'events' => $eventRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="events_new", methods={"GET","POST"})
+     * @Route("/new", name="event_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
-        $event = new Events();
-        $form = $this->createForm(EventsType::class, $event);
+        $event = new Event();
+        $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -41,54 +43,54 @@ class EventsController extends AbstractController
             $entityManager->persist($event);
             $entityManager->flush();
 
-            return $this->redirectToRoute('events_index');
+            return $this->redirectToRoute('event_index');
         }
 
-        return $this->render('events/new.html.twig', [
+        return $this->render('event/new.html.twig', [
             'event' => $event,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="events_show", methods={"GET"})
+     * @Route("/{id}", name="event_show", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function show(Events $event): Response
+    public function show(Event $event): Response
     {
-        return $this->render('events/show.html.twig', [
+        return $this->render('event/show.html.twig', [
             'event' => $event,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="events_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Request $request, Events $event): Response
+    public function edit(Request $request, Event $event): Response
     {
-        $form = $this->createForm(EventsType::class, $event);
+        $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('events_index', [
+            return $this->redirectToRoute('event_index', [
                 'id' => $event->getId(),
             ]);
         }
 
-        return $this->render('events/edit.html.twig', [
+        return $this->render('event/edit.html.twig', [
             'event' => $event,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="events_delete", methods={"DELETE"})
+     * @Route("/{id}", name="event_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function delete(Request $request, Events $event): Response
+    public function delete(Request $request, Event $event): Response
     {
         if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -96,6 +98,6 @@ class EventsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('events_index');
+        return $this->redirectToRoute('event_index');
     }
 }
