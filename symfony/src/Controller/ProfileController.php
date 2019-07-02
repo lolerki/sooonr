@@ -63,7 +63,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="setting_show", methods={"GET"})
+     * @Route("/{id}", name="setting_show", methods={"GET"}, requirements={"id":"\d+"})
      * @IsGranted("ROLE_USER")
      */
     public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response

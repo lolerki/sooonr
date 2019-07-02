@@ -42,11 +42,17 @@ class EventController extends AbstractController
 
         $user = $this->get('session')->get('loginUserId');
 
-        $form = $this->createForm(EventType::class, $user);
+        $event = new Event();
+
+        $form = $this->createForm(EventType::class, $event);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($event);
+            $entityManager->flush();
 
             return $this->redirectToRoute('event_index');
         }
