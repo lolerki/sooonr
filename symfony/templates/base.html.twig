@@ -36,7 +36,10 @@
                 <ul id='dropdownfirst' class='dropdown-content dropdownmenu bgblur'>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li><a href="{{ path('app_booking') }}" class="white-text">{{ 'bonjour'|trans }} {{ app.user.email }}</a></li>
-                        <li><a href="{{ path('profile_show', {'id': app.user.id}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
+                        <li><a href="{{ path('setting_show', {'id': app.user.id}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
+                        <li><a href="{{ path('address_new') }}" class="white-text">Ajouter une adresse</a></li>
+                        <li><a href="{{ path('user_edit') }}" class="white-text">Modifer Email</a></li>
+                        <li><a href="{{ path('user_change_password') }}" class="white-text">Changer mot de passe </a></li>
                         <li><a href="{{ path('app_logout') }}" class="white-text"><i class="material-icons">lock</i>{{ 'menu.logout'|trans }}</a></li>
                     {% else %}
                         test

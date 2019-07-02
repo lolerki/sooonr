@@ -19,12 +19,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 /**
- * @Route("/profile")
+ * @Route("/setting")
  */
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/", name="profile_index", methods={"GET"})
+     * @Route("/", name="setting_index", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
     public function index(ProfileRepository $profileRepository): Response
@@ -35,7 +35,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="profile_new", methods={"GET","POST"})
+     * @Route("/new", name="setting_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
@@ -63,7 +63,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="profile_show", methods={"GET"})
+     * @Route("/{id}", name="setting_show", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
     public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response
@@ -87,7 +87,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="profile_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="setting_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Profile $profile): Response
@@ -110,7 +110,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="profile_delete", methods={"DELETE"})
+     * @Route("/{id}", name="setting_delete", methods={"DELETE"})
      * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Profile $profile): Response
