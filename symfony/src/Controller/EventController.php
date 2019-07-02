@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Event;
-use App\Entity\User;
 use App\Form\EventType;
+use App\Form\UserType;
 use App\Repository\EventRepository;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -39,35 +39,19 @@ class EventController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $event = new Event();
+
         $user = $this->get('session')->get('loginUserId');
 
-        $event->setCreateAt(new \DateTime('now'));
-        $form = $this->createFormBuilder($event)
-            ->add('title', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('dateEvent', DateType::class, [
-                // renders it as a single text box
-                'widget' => 'single_text',
-            ])
-            ->add('linkGoogle', TextareaType::class)
-            ->add('price', TextType::class)
-            ->add('idUser', EntityType::class, [
-                'class' => User::class
-            ])
-            ->getForm();
+        $form = $this->createForm(EventType::class, $user);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($event);
-            $entityManager->flush();
 
             return $this->redirectToRoute('event_index');
         }
 
         return $this->render('event/new.html.twig', [
-            'event' => $event,
             'form' => $form->createView(),
         ]);
     }

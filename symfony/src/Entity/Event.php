@@ -85,7 +85,7 @@ class Event
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="events", cascade={"persist"})
      * @Groups({"event_post_collection","event_get_item", "event_get_collection"})
      */
     private $idUser;

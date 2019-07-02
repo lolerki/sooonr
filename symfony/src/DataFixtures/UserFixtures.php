@@ -10,6 +10,8 @@ use Faker;
 
 class UserFixtures extends Fixture
 {
+    public const USER_REFERENCE = 'userFixture';
+
     private $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
@@ -19,31 +21,30 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $test_password = 'Azerty@1';
 
         $faker = Faker\Factory::create('fr_FR');
 
         $user = (new User())
-            ->setEmail('virgil@test.com')
+            ->setEmail('virgilmeaup@hotmail.fr')
             ->setFirstName($faker->firstName)
             ->setRoles(['ROLE_ADMIN'])
-            ->setPassword(password_hash("Azerty@1", PASSWORD_BCRYPT));
+            ->setPassword(password_hash($test_password, PASSWORD_BCRYPT));
         $manager->persist($user);
 
-
-
-   /**     $user->setPassword($this->passwordEncoder->encodePassword(
-            $user,
-            'the_new_password'
-        ));**/
-
-       $user = (new User())
-            ->setEmail('laetitita@rabois.com')
-            ->setFirstName('laetitia')
-            ->setPassword(password_hash("test", PASSWORD_BCRYPT));
-        $manager->persist($user);
+        for ($i = 0; $i < 10; $i++)
+        {
+            $user = (new User())
+                ->setEmail($faker->email)
+                ->setFirstName($faker->firstName)
+                ->setRoles([])
+                ->setPassword(password_hash($test_password, PASSWORD_BCRYPT));
+            $manager->persist($user);
+        }
 
         $manager->flush();
 
+        $this->addReference(self::USER_REFERENCE, $user);
 
     }
 }
