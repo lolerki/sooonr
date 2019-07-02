@@ -1,10 +1,9 @@
+ {{ form_start(form) }}
 
-            {{ form_start(form) }}
-                {{ form_errors(form) }}
-                {{ form_row(form.biography) }}
-                {{ form_row(form.about) }}
-                {{ form_row(form.stage_name) }}
-                {{ form_row(form.price) }}
-                {{ form_row(form.id_user, {'attr': {'value':  app.user.id,  }}) }}
-                <button class="btn bgblur">{{ button_label|default('Save') }}</button>
-            {{ form_end(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <button class="btn bgblur">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}

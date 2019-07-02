@@ -42,16 +42,9 @@ class ProfileController extends AbstractController
     {
         $profile = new Profile();
         $user = $this->get('session')->get('loginUserId');
-        //$form = $this->createForm(ProfileType::class, $profile);
-        $form = $this->createFormBuilder($profile)
-            ->add('biography', TextareaType::class)
-            ->add('about', TextareaType::class)
-            ->add('stage_name', TextType::class)
-            ->add('price', TextType::class)
-            ->add('id_user', EntityType::class, [
-                'class' => User::class
-            ])
-            ->getForm();
+
+        $form = $this->createForm(ProfileType::class, $profile);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

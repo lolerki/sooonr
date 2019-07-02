@@ -24,7 +24,7 @@
                                         <!-- <a href="#"><i class="small material-icons">room</i>{#{ event.address }#}</a>-->
                                         <time>{{ event.dateEvent ? event.dateEvent|date('Y-m-d') : '' }}</time>
                                     </div>
-                                    <span class="card-title grey-text text-darken-4">{{ event.title }}</span>
+                                    <span class="card-title grey-text text-darken-4 truncate">{{ event.title }}</span>
 
                                     <p class="card-subtitle grey-text text-darken-2 truncate">{{ event.description }}</p>
                                     <!-- <div class="row card-row">
