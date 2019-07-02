@@ -27,10 +27,7 @@ class HomeController extends AbstractController
     public function indexAction(EventRepository $eventRepository, ProfileRepository $profileRepository): Response
     {
 
-        return $this->render('home/home.html.twig', [
-            'events' => $eventRepository->findAll(),
-            'profiles' => $profileRepository->findAll(),
-        ]);
+        return $this->render('home/home.html.twig');
     }
 
     /**
