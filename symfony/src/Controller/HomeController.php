@@ -68,21 +68,15 @@ class HomeController extends AbstractController
     /**
      * @Route("/artists", name="app_bookingartists")
      */
-    public function bookingArtistsAction(): Response
+    public function bookingArtistsAction(ProfileRepository $profileRepository): Response
     {
-        return $this->render('home/artists.html.twig');
+        return $this->render('home/artists.html.twig',[
+            'profiles' => $profileRepository->findAll()
+        ]);
     }
 
 
-    /**
-     * @Route("/lists-events", name="app_bookingevent")
-     */
- /*   public function bookingEventAction(EventsRepository $eventsRepository): Response
-    {
-        return $this->render('home/events.html.twig',[
-            'events' => $eventsRepository->findAll(),
-        ]);
-    }*/
+
 
     /**
      * @Route("/about", name="app_about")
@@ -92,15 +86,6 @@ class HomeController extends AbstractController
         return $this->render('home/about.html.twig');
     }
 
-    /**
-     * @Route("/profil", name="app_profil")
-     */
-    public function profilAction(DemandsRepository $demandsRepository): Response
-    {
-        return $this->render('home/profil.html.twig',
-            [
-                'demands' => $demandsRepository->findAll(),
-            ]);
-    }
+
 }
 

@@ -3,7 +3,7 @@
 {% block title %}Sooonr - A propos{% endblock %}
 
 {% block body %}
-    <div class="container margtop margbot greatvibes pad">
+    <div class="container margtop margbot greatvibes pad white bordrad10 pad20">
 
         <div id="slide1" class="parallax-window" data-parallax="scroll" data-image-src="<?php echo $parall; ?>">
 
@@ -14,7 +14,7 @@
 
                                 <div class="row banner__content">
                                     <div class="col-lg-6 off-screen off-screen--from-left">
-                                        <div class="white-text">
+                                        <div>
                                                 <h1 class=" titlehun">A propos de  <span class="typologo">SOOONR</span></h1>
                                             <p><span class=" typosizevingt">SOOONR est un site de booking d'artiste. Qu'ils soient amateurs ou professionnels ils peuvent s'inscrire sur la plateforme et proposer leurs services.</p>
                                             <p>La plateforme permet de trouver facilement un artiste selon le domaine dans lequel il propose son service. Chaque artiste </p>
@@ -24,7 +24,7 @@
                                 </div>
 
                         </section>
-                        <section class="center white-text ">
+                        <section class="center ">
                             <h2 class="typotext">Nos tarifications</h2>
                             <table class="table responsive-table">
                                 <thead>
@@ -44,7 +44,7 @@
                             </table>
                         </section>
 
-                <section class="center white-text ">
+                <section class="center ">
                     <table class="table responsive-table">
 
                         <tbody>
@@ -52,15 +52,24 @@
                             <td class="center">
                                 Mise en ligne d'un événement sur la plateforme à un prix unique.
                             </td>
-                            <td>5€/mois</td>
+                            <td>5€</td>
                         </tr>
                         </tbody>
                     </table>
                 </section>
                 <div class="row"></div>
                 <div class="row"></div>
+                <div class="row center">
+                    <p>N'hésiter pas et créer votre compte pour rejoindre la communauté SOOONR</p>
+                    <button class="btn btn-lg bgblur">
+                        <a href="{{ path('app_register') }}" class="grey-text text-lighten-4">{{ 'register'|trans }}</a>
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
+    <div class="row"></div>
+    <div class="row"></div>
 
 {% endblock %}

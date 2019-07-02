@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="title.bookingartists">
                 <source>title.bookingartists</source>
-                <target>Artists</target>
+                <target>Artistes</target>
             </trans-unit>
             <trans-unit id="title.bookingevent">
                 <source>title.bookingevents</source>
