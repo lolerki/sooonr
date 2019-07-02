@@ -33,6 +33,8 @@ import { ArtistTypeShow } from './Components/ArtistType/Show';
 import { ArtistTypeEdit } from './Components/ArtistType/Edit';
 import { ArtistTypeCreate } from './Components/ArtistType/Create';
 import { ArtistTypeList } from './Components/ArtistType/List';
+import NotFound from './Components/Layouts/NotFound';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -88,6 +90,9 @@ export default class extends Component {
                    dataProvider= { dataProvider(this.state.api) }
                    theme={ theme }
                    appLayout={ MyLayout }
+
+                   catchAll={NotFound}
+
             >
                 <Route exact path="/privacy-policy" component={() => <Redirect to={{ pathname: 'http://localhost:8080' }} />} />
 

@@ -44,54 +44,89 @@
             </div>
         </div>
     </section>
-    <section class="heightquatrevingt blue darken-4">
         <div class="container">
             <div class="row">
-                <article class="col l6 white-text valign-wrapper">
-                    <h2 class="titlehun typosizequarante white-text">Vous etes un artiste amateur?</h2>
-                    <p class="typotext typosizequize">
-                        Vous etes amateur ou un jeune artiste, n'hésiter plus et créer votre compte sur notre plateforme SOOONR afin de trouver des clients interressés par vos prestations.
-                        Vous animez des évènements, des cours à domiciles ou dans votre propre studio? vous pourrez trouvés les clients intérrésés et ainsi constitué votre booking!
+                <h2 class="titlehun typosizequarante white-text">Trouver les artistes qui vous conviennent</h2>
+                <div class="row">
+                    <div class="col s12 cards-container">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">John DOE</span>
+                                <p>DJ amateur recherchant des soirées pour animer. Je mixe de tous </p>
+                                <p class="right">Price : 30€/h</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Voir mon profile</a>
 
-                    </p>
-                </article>
-                <article class="col l6 white-text">
-                    <a href="#six!"><img class="imagehomeright" src="{{ asset('build/medias/chamber-music.jpg') }}"></a>
-                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="heightquatrevingt">
-        <div class="container">
-            <h2 class="titlehun typosizequarante right-align">Vous etes un artiste professionel?</h2>
-            <div class="row">
-                <article class="col l6">
-                    <a href="#six!"><img class="imagehomeleft" src="{{ asset('build/medias/music-guitar.jpg') }}"></a>
-                </article>
-                <article class="col l6">
-                    <p class="typotext typosizequize">
-                        Vous etes un professionel ou un artiste confirmé, créer votre compte sur notre plateforme SOOONR afin de trouver des clients interressés par vos prestations.
-                        Vous animez des évènements, des cours à domiciles ou dans votre propre studio? vous pourrez trouvés les clients intérrésés et ainsi constitué votre booking!
-                    </p>
-                </article>
-            </div>
-        </div>
     </section>
-    <section class="heightquatrevingt blue darken-2">
-        <div class="container">
-            <h2 class="titlehun typosizequarante white-text">Vous recherchez une prestation?</h2>
-            <div class="row">
-                <article class="col l6 white-text">
-                    <p class="typotext typosizequize">
-                        Vous souhaitez aprendre un instrument de musique? Vous avez besoin  d'une prestation pour un évènement? N'hésiter plus et inscrivez-vous sur notre plateforme SOOONR afin de trouver les artiste qui vous interresses.
-                    </p>
-                </article>
-                <article class="col l6 white-text">
-                    <a href="#six!"><img class="imagehomeright" src="{{ asset('build/medias/musician-2.jpg') }}"></a>
-                </article>
-            </div>
+    <div class="container">
+        <div class="row">
+            <h2 class="titlehun typosizequarante white-text">Trouver un évènement où démontrer votre talent! </h2>
+            <div id="card-container" class="row">
+
+                    {#% for event in events %#}
+                    <!-- Col: Card 1 -->
+                    <div class="col s12 m6 l4">
+                        <!-- Card 1 -->
+                        <div class="card">
+                            <div class="card-content white-text">
+                                <div class="card__date">
+                                    <span class="card__date__day">{#{ event.dateEvent ? event.dateEvent|date('d') : '' }#}01</span>
+                                    <span class="card__date__month">{#{ event.dateEvent ? event.dateEvent|date('m') : '' }#}07</span>
+                                </div>
+                                <div class="card__meta">
+                                    <a href="#"><i class="small material-icons">room</i>{#{ event.address }#}11 rue de la Tréfilerie 93120 La Courneuve</a>
+                                    <time>{#{ event.dateEvent ? event.dateEvent|date('Y-m-d') : '' }#}01-07-2019</time>
+                                </div>
+                                <span class="card-title grey-text text-darken-4">{#{ event.title }#}Big Party</span>
+
+                                <p class="card-subtitle grey-text text-darken-2">{#{ event.description }#}À l'occasion de la fin des études, une fête est organisée pour décompresser! Pour cela nous avons besoin des talents d'un DJ pour mettre l'ambiance.</p>
+                                <div class="row card-row">
+                                    <span class="text-darken-2 card-info"><i class="small material-icons">label</i>&nbsp;{#{ event.styleEvent }#}Soirée</span>
+                                </div>
+                                <div class="row card-row">
+                                    <span class="text-darken-2 card-info"><i class="small material-icons">place</i>&nbsp;Comment se rendre à l'événement</span>
+                                    <div col s12>
+                                        <iframe src="{#{ event.linkGoogle }#}https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2621.551077931379!2d2.4058843156421608!3d48.92394470404287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66c6514685209%3A0x3fadba61a488e73!2s11+Rue+de+la+Tr%C3%A9filerie%2C+93120+La+Courneuve!5e0!3m2!1sfr!2sfr!4v1561981911205!5m2!1sfr!2sfr"></iframe>
+
+                                    </div>
+                                </div>
+                                <div class="row card-row">
+                                    <span class="text-darken-2 card-info"><i class="small material-icons">event</i>&nbsp;{#{ event.status }#}Trouvé</span>
+                                    <span class="text-darken-2 card-info"><i class="small material-icons">event</i>&nbsp;{#{ event.price }#}300 €</span>
+                                </div>
+                                <div class="row card-row">
+                                    <span class="text-darken-2 card-info"><i class="small material-icons">schedule</i>{#{  event.dateEvent ? event.dateEvent|date('H:i') : '' }#}20h</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="{#{ path('demands_new') }#}"><i class="material-icons">&nbsp;language</i>Proposer ces services</a>
+
+                                <a href="{#{ path('events_show', {'id': event.id}) }#}" class="card-action-right"><i class="material-icons">&nbsp;details</i>Details</a>
+
+                            </div>
+                        </div>
+                        <!-- End of card -->
+                    </div>
+                    <!-- End of col -->
+
+                    {#% else %#}
+                       <!-- <tr>
+                            <td colspan="10">no records found</td>
+                        </tr> -->
+                    {#% endfor %#}
+    </div>
         </div>
+    </div>
     </section>
+
 
 {% endblock %}
 {% block javascripts %}

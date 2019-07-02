@@ -3,21 +3,37 @@
 {% block title %}Sooonr - Contact{% endblock %}
 
 {% block body %}
-    <div class="container center">
-        <h1 class="center titlehun">{{ 'title.contact'|trans }}</h1>
+    <div class="container bordrad10 margtop white">
+        <div class="row">
+            <div class="col s12 white bordrad10 pad20 margtop">
+                <h1 class="center titlehun">{{ 'title.contact'|trans }}</h1>
+                <section class="row center">
+                    <p class="typotext">Pour nous contacter</p>
+                    <article class="col l6 m6 s12 center">
+                        <h2 class="center typotext">Adresse</h2>
+                        <address>The Ministry<br>
+                            79-81 Borough Road<br>
+                            London<br>
+                            SE1 1DN<br>
+                            <button class="btn btn-lg bgblur">
+                                <a class="white-text" style="text-decoration: none" href="tel:442073787321">+44 207 378 7321</a>
+                            </button>
+                        </address>
+                    </article>
+                    <article class="col l6 m6 s12 center">
+                        <h2 class="center typotext">Mails</h2>
+                            <p class="typotext">Tout problème a une solution envoyée nous votre requête à :</p>
+                            <button class="btn btn-lg bgblur">
+                                <a class="white-text" style="text-decoration: none" href="mailto:contact@sooonr.com">contact@sooonr.com</a>
+                            </button>
+                        <p class="typotext">Pour toute question info pratiques contactez-nous à :</p>
+                            <button class="btn btn-lg bgblur">
+                                <a class="white-text" style="text-decoration: none" href="mailto:info@sooonr.com">info@sooonr.com</a>
+                            </button>
+                    </article>
+                </section>
+            </div>
+        </div>
     </div>
 
-   <!-- <form>
-        <h1>Material Design Contact Form with Validation</h1>
-        <input placeholder="Name" type="text"  value="" required>
-        <input placeholder="Email address" type="email" onblur="this.setAttribute('value', this.value);" value="" required>
-        <span class="validation-text">Please enter a valid email address.</span>
-        <input placeholder="Location" type="text" value="" required>
-        <div class="flex">
-            <textarea placeholder="Message" rows="1" required></textarea>
-        </div>
-        <button>Send</button>
-    </form> -->
-
-    <a href="https://twitter.com/mildrenben" target="_blank"><i class="fa fa-twitter"></i>Follow Me</a>
 {% endblock %}

@@ -19,6 +19,7 @@ Encore
      */
   //  .addEntry('app', './assets/js/app.js')
     .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/materialize', './assets/js/materialize.js')
     .addStyleEntry('css/app', ['./assets/scss/app.scss'])
     .addStyleEntry('css/style', ['./assets/css/app.css'])
     .addStyleEntry('css/arrowdown', ['./assets/css/arrowdown.css'])

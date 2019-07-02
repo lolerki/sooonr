@@ -48,7 +48,11 @@ export default function  MenuAppBar() {
                         <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080">SOOONR</a>
                     </Typography>
                     <ul style={{textAlign: "right", marginRight: 10 + "%", width: 70 + "%", listStyle: "none", color: "white"}}>
+
                         <a style={{textDecoration: "none", color: "white"}} href="http://localhost:3000/events"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>Booking</li></a>
+
+                        <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080/fr/booking"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>Booking</li></a>
+
                         <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080/fr/about"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>A propos</li></a>
                         <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080/fr/contact"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>Contact</li></a>
                         <a style={{textDecoration: "none", color: "white"}} href="http://localhost:8080/fr/login"><li style={{display: "inline-block", width: 15 + "%", textAlign: "center"}}>Connexion</li></a>
