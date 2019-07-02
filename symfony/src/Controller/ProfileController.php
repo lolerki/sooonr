@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Profile;
 use App\Entity\User;
 use App\Form\ProfileType;
+use App\Repository\AddressRepository;
+use App\Repository\EventRepository;
 use App\Repository\ProfileRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +25,7 @@ class ProfileController extends AbstractController
 {
     /**
      * @Route("/", name="profile_index", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function index(ProfileRepository $profileRepository): Response
     {
@@ -69,12 +71,25 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}", name="profile_show", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
-    public function show(Profile $profile): Response
+    public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response
     {
+        $user = $this->getUser();
+        $profileexist = $profileRepository->findby([
+            'id_user' => $user,
+        ]);
+        if($profileexist == null){
+            return $this->redirectToRoute('profile_new');
+        }
         return $this->render('profile/show.html.twig', [
             'profile' => $profile,
+            'events' => $eventRepository->findby([
+                'idUser' => $user,
+            ]),
+            'addresses' =>$addressRepository->findby([
+                'id_user' => $user
+            ])
         ]);
     }
 
@@ -103,7 +118,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}", name="profile_delete", methods={"DELETE"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Profile $profile): Response
     {

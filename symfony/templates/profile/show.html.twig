@@ -6,42 +6,127 @@
 <div class="container bordrad10 margtop white">
     <div class="row">
         <div class="col s12 white bordrad10 pad20 margtop">
-            <h1 class="titlehun">Profile</h1>
+                <section class="container">
+                    <div class="row ">
+                        <div class="col-lg-6 off-screen off-screen--from-left">
+                            <div class="">
+                                <h1 class=" titlehun">Profile Artiste</span></h1>
+                            </div>
+                        </div>
+                        <div class="col s12 grey lighten-2 bordrad10">
+                            <p>Informations personnelles</p>
+                        </div>
+                        <div class="col s2 offset-s5">
+                            <p>
+                                <img class=" bordrad50" src="{{ asset('build/medias/harp.jpg') }}" alt="">
+                            </p>
+                        </div>
+                        <article class="col s6">
+                            <p>Joël SYLVIUS</p>
+                            <p>Homme</p>
+                            {% if app.user.id == profile.idUser.id %}
+                                <p>18/04/1991</p>
+                            {% endif %}
+                        </article>
+                        {% if app.user.id == profile.idUser.id %}
+                            <article class="col s6">
+                                {% for address in addresses %}
+                                <div class="card blue-grey darken-1 hoverable">
+                                    <div class="card-content white-text">
+                                        <p class="white-text">{{ address.street }}</p>
+                                        <p class="white-text">{{ address.streetLine2 }}</p>
+                                        <p class="white-text">{{ address.zipCode }} {{ address.city }}</p>
+                                        <p class="white-text">{{ address.country }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <button class="btn btn-lg bgblur">
+                                    <a class="white-text circle" href="{{ path('address_new') }}"><i class="material-icons">add</i></a>
+                                </button>
+                            </article>
 
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th>Id</th>
-                        <td>{{ profile.id }}</td>
-                    </tr>
-                    <tr>
-                        <th>Biography</th>
-                        <td>{{ profile.biography }}</td>
-                    </tr>
-                    <tr>
-                        <th>About</th>
-                        <td>{{ profile.about }}</td>
-                    </tr>
-                    <tr>
-                        <th>Stage_name</th>
-                        <td>{{ profile.stageName }}</td>
-                    </tr>
-                    <tr>
-                        <th>Price</th>
-                        <td>{{ profile.price }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="row"></div>
-            <button class="btn btn-lg bgblur">
-                <a class="white-text" href="{{ path('profile_index') }}">back to list</a>
-            </button>
-            <button class="btn btn-lg bgblur">
-                <a class="white-text" href="{{ path('profile_edit', {'id': profile.id}) }}">edit</a>
-            </button>
+                        {% endif %}
+                        <article class="col s12">
+                            <h2 class="typosizequize"><b>Biographie </b>:</h2>
+                            {{ profile.biography  }}
+                        </article>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 grey lighten-2 bordrad10">
+                            <p>Informations complémentaires</p>
+                        </div>
+                        <article class="col s12">
+                            <p>{{ profile.about }}</p>
+                        </article>
+                        <article class="col s4">
+                            <p>{{ profile.stageName }}</p>
+                        </article>
+                        <article class="col s4">
+                            <p><i class="material-icons">verified_user</i></p>
+                        </article>
+                    </div>
+                </section>
+            {% if app.user.id == profile.idUser.id %}
+                <section>
+                    <div class="row">
+                        <div class="col s12 grey lighten-2 bordrad10">
+                            <p>Listes de mes évènements</p>
+                        </div>
+                        <table class="striped">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for event in events %}
+                                <tr>
+                                    <td>{{ event.title }}</td>
+                                    <td>{{ event.dateEvent ? event.dateEvent|date('Y-m-d') : '' }}</td>
 
-            {{ include('profile/_delete_form.html.twig') }}
+                                    <td>
+                                        <button class="btn btn-lg bgblur">
+                                            <a class="white-text" href="{{ path('event_show', {'id': event.id}) }}"><i class="material-icons">visibility</i></a>
+                                        </button>
+                                        <button class="btn btn-lg bgblur">
+                                            <a class="white-text" href="{{ path('event_edit', {'id': event.id}) }}"><i class="material-icons">edit</i></a>
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="col s6">
+
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+
+                <div class="row"></div>
+
+                <div class="row">
+                    <div class="col s6 right-left">
+                        <button class="btn btn-lg bgblur">
+                            <a class="white-text" href="{{ path('app_index') }}">Retour accueil</a>
+                        </button>
+                    </div>
+                    {% if app.user.id == profile.idUser.id %}
+                        <div class="col s6 left-align">
+                            {{ include('profile/_delete_form.html.twig') }}
+                        </div>
+                    {% endif %}
+                </div>
+
+
         </div>
     </div>
 </div>
+    <div class="row"></div>
 {% endblock %}

@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\User;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +24,7 @@ class EventController extends AbstractController
 {
     /**
      * @Route("/", name="event_index", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function index(EventRepository $eventRepository): Response
     {
@@ -35,7 +40,22 @@ class EventController extends AbstractController
     public function new(Request $request): Response
     {
         $event = new Event();
-        $form = $this->createForm(EventType::class, $event);
+        $user = $this->get('session')->get('loginUserId');
+
+        $event->setCreateAt(new \DateTime('now'));
+        $form = $this->createFormBuilder($event)
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('dateEvent', DateType::class, [
+                // renders it as a single text box
+                'widget' => 'single_text',
+            ])
+            ->add('linkGoogle', TextareaType::class)
+            ->add('price', TextType::class)
+            ->add('idUser', EntityType::class, [
+                'class' => User::class
+            ])
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,7 +74,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}", name="event_show", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function show(Event $event): Response
     {
@@ -69,7 +89,17 @@ class EventController extends AbstractController
      */
     public function edit(Request $request, Event $event): Response
     {
-        $form = $this->createForm(EventType::class, $event);
+        $form = $this->createFormBuilder($event)
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('dateEvent', DateType::class, [
+                // renders it as a single text box
+                'widget' => 'single_text',
+            ])
+            ->add('linkGoogle', TextareaType::class)
+            ->add('price', TextType::class)
+
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -88,7 +118,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}", name="event_delete", methods={"DELETE"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Event $event): Response
     {
