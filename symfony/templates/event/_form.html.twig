@@ -1,11 +1,28 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
-
-    {{ form_row(form.title) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.linkGoogle) }}
-    {{ form_row(form.price) }}
+<div class="row">
+    <div class="input-field col s12 m6 l6">
+        {{ form_row(form.title) }}
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12 m6 l6">
+        {{ form_row(form.description) }}
+    </div>
+    <div class="input-field col s12 m6 l6">
+        {{ form_row(form.linkGoogle) }}
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12 m6 l2">
+        {{ form_row(form.price) }}
+    </div>
+    <div class="input-field col s12 m6 l4">
     {{ form_row(form.dateEvent) }}
+    </div>
+</div>
+<div class="row">
     <button class="btn btn-lg bgblur">{{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(form) }}
 

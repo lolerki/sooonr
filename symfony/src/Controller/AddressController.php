@@ -41,9 +41,9 @@ class AddressController extends AbstractController
         //$form = $this->createForm(AddressType::class, $address);
         $form = $this->createFormBuilder($address)
             ->add('street', TextType::class)
-            ->add('streetLine2', TextType::class)
+            ->add('street_line2', TextType::class)
             ->add('city', TextType::class)
-            ->add('zipCode', NumberType::class)
+            ->add('zip_code', NumberType::class)
             ->add('country', TextType::class)
             ->add('id_user', EntityType::class, [
                 'class' => User::class
@@ -88,9 +88,7 @@ class AddressController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('address_index', [
-                'id' => $address->getId(),
-            ]);
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('address/edit.html.twig', [
@@ -111,6 +109,6 @@ class AddressController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('address_index');
+        return $this->redirectToRoute('app_index');
     }
 }
