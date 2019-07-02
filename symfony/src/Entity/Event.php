@@ -73,7 +73,7 @@ class Event
     private $dateEvent;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @Groups({"event_get_collection","event_post_collection","event_get_item","event_put_item"})
      */
     private $linkGoogle;

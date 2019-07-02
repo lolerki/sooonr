@@ -23,7 +23,7 @@ class ProfileController extends AbstractController
 {
     /**
      * @Route("/", name="profile_index", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function index(ProfileRepository $profileRepository): Response
     {
@@ -69,7 +69,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}", name="profile_show", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function show(Profile $profile): Response
     {
@@ -103,7 +103,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}", name="profile_delete", methods={"DELETE"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Profile $profile): Response
     {

@@ -1,4 +1,11 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.linkGoogle) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.dateEvent) }}
     <button class="btn btn-lg bgblur">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
