@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block body %}
+    <div class="container bordrad10 margtop white">
+        <div class="row">
+            <div class="col s12 white bordrad10 pad20 margtop">
+                <h1>Edit Profile</h1>
+
+                {{ include('profile/_form.html.twig', {'button_label': 'Update'}) }}
+                <button class="btn btn-lg bgblur">
+                    <a class="white-text" href="{{ path('setting_index') }}">back to list</a>
+                </button>
+                {{ include('profile/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

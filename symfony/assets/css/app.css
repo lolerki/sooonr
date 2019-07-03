@@ -17,6 +17,10 @@ main {
     margin-top: 3vh;
 }
 
+.margbottom{
+    margin-bottom: 3vh;
+}
+
 .bordrad10{
     border-radius: 10px;
 }
@@ -38,6 +42,9 @@ main {
     background: linear-gradient(to bottom right, #67b26f, #4ca2cd);
 }
 
+.bgblured{
+    background: linear-gradient(to bottom right, #FE6B8B, #FF8E53);
+}
 .typologo{
     font-family: 'Sancreek', cursive;
 }
@@ -112,6 +119,11 @@ main {
 .colorBlack{
     color: #000000;
     border-color: #000000;
+}
+
+.carre{
+    height: 300px;
+    width: 300px;
 }
 
 .button-line {

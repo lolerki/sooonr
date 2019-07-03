@@ -55,7 +55,7 @@ class Address
     private $street;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item","user_put_item"})
      */
     private $street_line2;
@@ -89,6 +89,11 @@ class Address
      * @Groups({"address_post_collection"})
      */
     private $bills;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
 
     public function __construct()
     {
@@ -199,6 +204,18 @@ class Address
                 $bill->setIdAddress(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

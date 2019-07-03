@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Event{% endblock %}
+
+{% block body %}
+<div class="container bordrad10 margtop white">
+    <div class="row">
+        <div class="col s12 white bordrad10 pad20 margtop">
+            <h1 class="titlehun">Créer votre nouvel évènement</h1>
+            <p class="typotext">Vous souhaitez louer les services d'un artiste, n'hésitez pas à créer votre évènement et recevez des propositions:</p>
+
+            {{ include('event/_form.html.twig') }}
+
+            <button class="btn btn-lg bgblur">
+                <a class="white-text" href="{{ path('event_index') }}">back to list</a>
+            </button>
+        </div>
+    </div>
+</div>
+
+    <div class="row"></div>
+{% endblock %}

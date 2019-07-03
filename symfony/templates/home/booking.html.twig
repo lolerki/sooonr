@@ -3,21 +3,33 @@
 {% block title %}Sooonr - Booking{% endblock %}
 
 {% block body %}
-    <div class="container center">
-        <h1 class="center titlehun">{{ 'title.booking'|trans }}</h1>
+
+    <div class="container white margtop pad20 bordrad10 margbottom">
+
+
+        <div class=" center">
+            <h1 class="center titlehun">{{ 'title.booking'|trans }}</h1>
+
+            <p class="typotext">{{ 'description.booking'|trans }}</p>
+        </div>
+
+        <section class="row">
+                <a href="{{ path('app_bookingartists') }}">
+                    <article class="col l6 s12 m6 text-center hoverable bordrad10">
+                        <h2 class="titlehun black-text">Artistes</h2>
+                        <img class="responsive-img"  style="height: 200px" src="{{ asset('build/medias/piano.63f64289.jpg') }}" alt="">
+                    </article>
+                </a>
+               <a href="{{ path('event_index') }}">
+                   <article class="col l6 s12 m6 text-center hoverable bordrad10">
+                        <h2 class="titlehun black-text">Events</h2>
+                        <img class="responsive-img" style="height: 200px" src="{{ asset('build/medias/guitarist.ec3b5d96.jpg') }}" alt="">
+                    </article>
+               </a>
+        </section>
+
     </div>
 
-   <!-- <form>
-        <h1>Material Design Contact Form with Validation</h1>
-        <input placeholder="Name" type="text"  value="" required>
-        <input placeholder="Email address" type="email" onblur="this.setAttribute('value', this.value);" value="" required>
-        <span class="validation-text">Please enter a valid email address.</span>
-        <input placeholder="Location" type="text" value="" required>
-        <div class="flex">
-            <textarea placeholder="Message" rows="1" required></textarea>
-        </div>
-        <button>Send</button>
-    </form> -->
+    <div class="row"></div>
 
-    <a href="https://twitter.com/mildrenben" target="_blank"><i class="fa fa-twitter"></i>Follow Me</a>
 {% endblock %}

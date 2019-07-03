@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 Encore
     // directory where compiled assets will be stored
@@ -19,6 +20,7 @@ Encore
      */
   //  .addEntry('app', './assets/js/app.js')
     .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/materialize', './assets/js/materialize.js')
     .addStyleEntry('css/app', ['./assets/scss/app.scss'])
     .addStyleEntry('css/style', ['./assets/css/app.css'])
     .addStyleEntry('css/arrowdown', ['./assets/css/arrowdown.css'])
@@ -43,7 +45,12 @@ Encore
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning()
+    .enableVersioning(Encore.isProduction())
+
+    .configureBabel(() => {}, {
+        useBuiltIns: 'usage',
+        corejs: 3
+    })
 
     // enables Sass/SCSS support
     .enableSassLoader()
@@ -55,7 +62,7 @@ Encore
     //.autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
-    .enableReactPreset()
+  //  .enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
 
     .copyFiles({

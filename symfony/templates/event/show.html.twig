@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+<div class="container bordrad10 margtop white">
+    <div class="row">
+        <div class="col s12 white bordrad10 pad20 margtop">
+            <h1 class="titlehun">{{ event.title }}</h1>
+            <p class="typotext">{{ event.createAt ? event.createAt|date('Y-m-d H:i:s') : '' }}</p>
+            <section class="row">
+                <article class="col s12  center">
+                    <iframe src="{{ event.linkGoogle }}" width="100%" height="100%"></iframe>
+                </article>
+                <article class="col s12 typotext">
+                    <h2 class="typosizevingt">Description de l'événement :</h2>
+                    <p class="col s12">{{ event.description }}</p>
+                    <div class="row"></div>
+                    <h2 class="typosizevingt">Date et heure de l'événement :</h2>
+                    <p>{{ event.dateEvent ? event.dateEvent|date('Y-m-d H:i:s') : '' }}</p>
+                    <div class="row"></div>
+                    <h2 class="typosizevingt">Rénumaration pour cette évènement :</h2>
+                    <p>{{ event.price }}€</p>
+                </article>
+
+            </section>
+
+
+            <button class="btn btn-lg bgblur">
+                <a class="white-text" href="{{ path('event_index') }}">Retour</a>
+            </button>
+            {% if app.user.id == event.idUser.id %}
+                <div class="row">
+                    <div class="col s6 right-align">
+                        <button class="btn btn-lg bgblur">
+                            <a class="white-text" href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
+                        </button>
+                    </div>
+                    <div class="col s6 left-align">
+                        {{ include('event/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

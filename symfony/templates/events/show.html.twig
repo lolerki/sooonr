@@ -3,10 +3,10 @@
 {% block title %}Events{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container bordrad10 margtop white">
         <div class="row">
-            <div class="col s12 white margtop pad20 bordrad10">
-                <h1>{{ event.name }}</h1>
+            <div class="col s12 white bordrad10 pad20 margtop">
+                <h1 >{{ event.name }}</h1>
 
                 <p>Créer le : {{ event.createdAt ? event.createdAt|date('Y-m-d') : '' }}</p>
                 <section>
@@ -43,10 +43,13 @@
                 <section>
                     <p>Status de la recherche: {{ event.status }}</p>
                 </section>
-                <a href="{{ path('events_index') }}">back to list</a>
-
-                <a href="{{ path('events_edit', {'id': event.id}) }}">edit</a>
-
+                <div class="row"></div>
+                <button class="btn btn-lg bgblur">
+                    <a class="white-text" href="{{ path('events_index') }}">back to list</a>
+                </button>
+                <button class="btn btn-lg bgblur">
+                    <a class="white-text" href="{{ path('events_edit', {'id': event.id}) }}">edit</a>
+                </button>
                 {{ include('events/_delete_form.html.twig') }}
             </div>
         </div>

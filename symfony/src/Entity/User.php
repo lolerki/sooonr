@@ -118,6 +118,11 @@ class User implements UserInterface
      */
     private $artistType;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Profile", mappedBy="idUser", cascade={"persist", "remove"})
+     */
+    private $profile;
+
     public function __construct()
     {
         $this->createAt = new \DateTime('now');
@@ -337,6 +342,24 @@ class User implements UserInterface
     public function setArtistType(?ArtistType $artistType): self
     {
         $this->artistType = $artistType;
+
+        return $this;
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?Profile $profile): self
+    {
+        $this->profile = $profile;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newIdUser = $profile === null ? null : $this;
+        if ($newIdUser !== $profile->getIdUser()) {
+            $profile->setIdUser($newIdUser);
+        }
 
         return $this;
     }
