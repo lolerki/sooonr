@@ -35,16 +35,16 @@
                 <!-- Dropdown Structure -->
                 <ul id='dropdownfirst' class='dropdown-content dropdownmenu bgblur'>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        {% if app.user.profile == false %}
+
                             <li><a href="{{ path('setting_new') }}" class="white-text">Créer votro profile </a></li>
-                        {% else %}
-                            <li><a href="{{ path('setting_show', {'id': app.user.profile}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
-                        {% endif %}
+
+                            <li><a href="{{ path('setting_show', {'id': app.user}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
+
                         <li><a href="{{ path('address_new') }}" class="white-text">Ajouter une adresse</a></li>
                         <li><a href="{{ path('user_edit') }}" class="white-text">Modifer Email</a></li>
                         <li><a href="{{ path('user_change_password') }}" class="white-text">Changer mot de passe </a></li>
                         <li><a href="{{ path('app_logout') }}" class="white-text"><i class="material-icons">lock</i>{{ 'menu.logout'|trans }}</a></li>
-                    {% else %}
+
                     {% endif %}
                 </ul>
 

@@ -119,9 +119,10 @@ class User implements UserInterface
     private $artistType;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Profile", cascade={"persist", "remove"}, inversedBy="id_user")
+     * @ORM\OneToOne(targetEntity="App\Entity\Profile", mappedBy="idUser", cascade={"persist", "remove"})
      */
-    protected $profile;
+    private $profile;
+
 
     public function __construct()
     {
@@ -348,12 +349,18 @@ class User implements UserInterface
 
     public function getProfile(): ?Profile
     {
-        return $this->artistType;
+        return $this->profile;
     }
 
     public function setProfile(?Profile $profile): self
     {
         $this->profile = $profile;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newIdUser = $profile === null ? null : $this;
+        if ($newIdUser !== $profile->getIdUser()) {
+            $profile->setIdUser($newIdUser);
+        }
 
         return $this;
     }

@@ -71,10 +71,9 @@ class Profile
     private $price;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"}, mappedBy="profile")
-     * @Groups({"profile_get_collection","profile_post_collection","profile_get_item"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="profile", cascade={"persist", "remove"})
      */
-    private $id_user;
+    private $idUser;
 
     public function getId(): ?int
     {
@@ -129,14 +128,14 @@ class Profile
         return $this;
     }
 
-    public function getIdUser(): ?user
+    public function getIdUser(): ?User
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
-    public function setIdUser(?user $id_user): self
+    public function setIdUser(?User $idUser): self
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
 
         return $this;
     }
