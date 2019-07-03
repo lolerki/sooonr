@@ -55,7 +55,7 @@ class AddressController extends AbstractController
                 $entityManager->persist($address);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('setting_show');
+                return $this->redirectToRoute('app_index');
             }
 
         return $this->render('address/new.html.twig', [
