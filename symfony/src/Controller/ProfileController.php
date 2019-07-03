@@ -50,7 +50,7 @@ class ProfileController extends AbstractController
             $entityManager->persist($profile);
             $entityManager->flush();
 
-            return $this->redirectToRoute('setting_index');
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('profile/new.html.twig', [
