@@ -51,21 +51,6 @@ services:
         ports:
         - "5432:5432"
 
-# Optional mysql database - uncomment and replace "depends_on: [ postgres ] with mysql
-#   mysql:
-#      # In production, you may want to use a managed database service
-#      image: mariadb
-#      container_name: mysql
-#      environment:
-#          MYSQL_ROOT_PASSWORD: root
-#          MYSQL_USER: symfony
-#          MYSQL_PASSWORD: symfony
-#      command: --log-bin=/var/lib/mysql/mysql-bin.log --binlog-format=ROW --server-id=1 --init-file /var/mysql/data/init.sql
-#      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-#      volumes:
-#      - ./symfony/docker/mysql:/var/mysql/data:ro
-#      - db-data:/var/lib/mysql:rw
-
     adminer:
         image: adminer
         container_name: adminer
@@ -74,18 +59,6 @@ services:
         restart: always
         ports:
         - 2000:8080
-
-#    blackfire:
-#        image: blackfire/blackfire
-#        container_name: blackfire
-#        depends_on:
-#        - php
-#        environment:
-#            BLACKFIRE_SERVER_ID: ${BLACKFIRE_SERVER_ID}
-#            BLACKFIRE_SERVER_TOKEN: ${BLACKFIRE_SERVER_TOKEN}
-#            BLACKFIRE_LOG_LEVEL: 4
-#        ports:
-#        - "8707:8707"
 
     h2-proxy:
         # Don't use this proxy in prod
@@ -98,6 +71,26 @@ services:
         ports:
         - "80:80"
         - "443:443"
+
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:6.0.1
+        environment:
+            - cluster.name=demo
+            - bootstrap.memory_lock=true
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports:
+            - 9200:9200
+
+    kibana:
+        image: docker.elastic.co/kibana/kibana:6.0.1
+        links:
+            - elasticsearch
+        ports:
+            - 5601:5601
 
 volumes:
     db-data: {}

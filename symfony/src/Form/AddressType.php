@@ -24,7 +24,7 @@ class AddressType extends AbstractType
             ->add('city', TextType::class)
             ->add('zip_code', NumberType::class)
             ->add('country', CountryType::class)
-            ->add('submit', SubmitType::class, [
+            ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn']
             ])
         ;

@@ -123,7 +123,6 @@ class User implements UserInterface
      */
     private $profile;
 
-
     public function __construct()
     {
         $this->createAt = new \DateTime('now');
