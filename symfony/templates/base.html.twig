@@ -22,11 +22,13 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li><a class='dropdown-trigger' href="{{ path('app_booking') }}" data-target='dropdown2'>{{ 'booking'|trans }}</a></li>
                         <li><a href="{{ path('app_about') }}">{{ 'about'|trans }}</a></li>
+                        <li><a href="{{ path('profile_showbyuser', {'id': app.user.id}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
                         <li><a href="{{ path('app_contact') }}">{{ 'title.contact'|trans }}</a></li>
                         <li><a class='dropdown-trigger' href='#!' data-target='dropdownfirst'><i class="material-icons" color="white-text">person</i></a></li>
                     {% else %}
                         <li><a class='dropdown-trigger' href="{{ path('app_booking') }}" data-target='dropdown2'>{{ 'booking'|trans }}</a></li>
                         <li><a href="{{ path('app_about') }}">{{ 'about'|trans }}</a></li>
+                        <li><a href="{{ path('profile_show', {'id': app.user.id}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
                         <li><a href="{{ path('app_contact') }}">{{ 'title.contact'|trans }}</a></li>
                         <li><a href="{{ path('app_login') }}" class="white-text">{{ 'menu.login'|trans }}</a></li>
                     {% endif %}
@@ -39,7 +41,7 @@
                         <li><a href="{{ path('profile_show', {'id': app.user.id}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
                         <li><a href="{{ path('app_logout') }}" class="white-text"><i class="material-icons">lock</i>{{ 'menu.logout'|trans }}</a></li>
                     {% else %}
-                        test
+
                     {% endif %}
                 </ul>
 

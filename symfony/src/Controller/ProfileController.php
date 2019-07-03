@@ -72,7 +72,6 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{id}", name="profile_show", methods={"GET"})
-
      * @IsGranted("ROLE_USER")
      */
     public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response
@@ -80,6 +79,29 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $profileexist = $profileRepository->findby([
             'id_user' => $user,
+        ]);
+        if($profileexist == null){
+            return $this->redirectToRoute('profile_new');
+        }
+        return $this->render('profile/show.html.twig', [
+            'profile' => $profile,
+            'events' => $eventRepository->findby([
+                'idUser' => $user,
+            ]),
+            'addresses' =>$addressRepository->findby([
+                'id_user' => $user
+            ])
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="profile_showbyuser", methods={"GET"}, requirements={"id":"\d+"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function showByUser(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository, $id): Response
+    {
+        $profileexist = $profileRepository->findOneby([
+            'id_user' => $id,
         ]);
         if($profileexist == null){
             return $this->redirectToRoute('profile_new');
