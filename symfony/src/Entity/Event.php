@@ -98,6 +98,7 @@ class Event
     public function __construct()
     {
         $this->bills = new ArrayCollection();
+        $this->createAt = new \DateTime('now');
     }
 
     public function getId(): ?int

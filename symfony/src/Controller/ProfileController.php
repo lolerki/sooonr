@@ -19,13 +19,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 /**
- * @Route("/profile")
+ * @Route("/setting")
  */
 class ProfileController extends AbstractController
 {
     /**
+<<<<<<< HEAD
      * @Route("/", name="profile_index", methods={"GET"})
 
+=======
+     * @Route("/", name="setting_index", methods={"GET"})
+>>>>>>> a39430a2e8bdcaeba2ab3b2b0237e4f642341abe
      * @IsGranted("ROLE_USER")
      */
     public function index(ProfileRepository $profileRepository): Response
@@ -36,23 +40,16 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="profile_new", methods={"GET","POST"})
+     * @Route("/new", name="setting_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
         $profile = new Profile();
         $user = $this->get('session')->get('loginUserId');
-        //$form = $this->createForm(ProfileType::class, $profile);
-        $form = $this->createFormBuilder($profile)
-            ->add('biography', TextareaType::class)
-            ->add('about', TextareaType::class)
-            ->add('stage_name', TextType::class)
-            ->add('price', TextType::class)
-            ->add('id_user', EntityType::class, [
-                'class' => User::class
-            ])
-            ->getForm();
+
+        $form = $this->createForm(ProfileType::class, $profile);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -71,7 +68,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="profile_show", methods={"GET"})
+     * @Route("/{id}", name="setting_show", methods={"GET"}, requirements={"id":"\d+"})
      * @IsGranted("ROLE_USER")
      */
     public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response
@@ -141,7 +138,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="profile_delete", methods={"DELETE"})
+     * @Route("/{id}", name="setting_delete", methods={"DELETE"})
      * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Profile $profile): Response

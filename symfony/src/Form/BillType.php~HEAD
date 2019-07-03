@@ -13,7 +13,6 @@ class BillType extends AbstractType
     {
         $builder
             ->add('date')
-            ->add('idUser')
             ->add('idAddress')
             ->add('idEvent')
         ;
