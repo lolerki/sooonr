@@ -25,7 +25,7 @@ class ProfileType extends AbstractType
             ])
             ->add('stage_name', TextType::class)
             ->add('price', NumberType::class)
-            ->add('submit', SubmitType::class, [
+            ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn']
             ])
         ;
