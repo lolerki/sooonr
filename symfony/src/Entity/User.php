@@ -118,6 +118,11 @@ class User implements UserInterface
      */
     private $artistType;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Profile", cascade={"persist", "remove"}, inversedBy="id_user")
+     */
+    protected $profile;
+
     public function __construct()
     {
         $this->createAt = new \DateTime('now');
@@ -337,6 +342,18 @@ class User implements UserInterface
     public function setArtistType(?ArtistType $artistType): self
     {
         $this->artistType = $artistType;
+
+        return $this;
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->artistType;
+    }
+
+    public function setProfile(?Profile $profile): self
+    {
+        $this->profile = $profile;
 
         return $this;
     }

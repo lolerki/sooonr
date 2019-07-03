@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
+
 
 
 /**
@@ -63,15 +66,10 @@ class ProfileController extends AbstractController
      * @Route("/{id}", name="setting_show", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
-    public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response
+    public function show(Profile $profile, EventRepository $eventRepository, AddressRepository $addressRepository, ProfileRepository $profileRepository): Response
     {
         $user = $this->getUser();
-        $profileexist = $profileRepository->findby([
-            'id_user' => $user,
-        ]);
-        if($profileexist == null){
-            return $this->redirectToRoute('profile_new');
-        }
+
         return $this->render('profile/show.html.twig', [
             'profile' => $profile,
             'events' => $eventRepository->findby([
@@ -82,6 +80,7 @@ class ProfileController extends AbstractController
             ])
         ]);
     }
+
 
     /**
      * @Route("/{id}/edit", name="setting_edit", methods={"GET","POST"})

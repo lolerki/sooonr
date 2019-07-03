@@ -71,7 +71,7 @@ class Profile
     private $price;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"}, mappedBy="profile")
      * @Groups({"profile_get_collection","profile_post_collection","profile_get_item"})
      */
     private $id_user;

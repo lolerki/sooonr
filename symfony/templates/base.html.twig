@@ -20,12 +20,12 @@
                 <a href="{{ path('app_index') }}" class="brand-logo mleft typologo">SOOONR</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li><a class='dropdown-trigger' href="{{ path('app_booking') }}" data-target='dropdown2'>{{ 'booking'|trans }}</a></li>
+                        <li><a class='dropdown-trigger' href="#!" data-target='dropdown2'>{{ 'booking'|trans }}</a></li>
                         <li><a href="{{ path('app_about') }}">{{ 'about'|trans }}</a></li>
                         <li><a href="{{ path('app_contact') }}">{{ 'title.contact'|trans }}</a></li>
                         <li><a class='dropdown-trigger' href='#!' data-target='dropdownfirst'><i class="material-icons left">person</i> <span>{{ app.user.email }}</span></a></li>
                     {% else %}
-                        <li><a class='dropdown-trigger' href="{{ path('app_booking') }}" data-target='dropdown2'>{{ 'booking'|trans }}</a></li>
+                        <li><a class='dropdown-trigger' href="#!" data-target='dropdown2'>{{ 'booking'|trans }}</a></li>
                         <li><a href="{{ path('app_about') }}">{{ 'about'|trans }}</a></li>
                         <li><a href="{{ path('app_contact') }}">{{ 'title.contact'|trans }}</a></li>
                         <li><a href="{{ path('app_login') }}" class="white-text">{{ 'menu.login'|trans }}</a></li>
@@ -35,19 +35,22 @@
                 <!-- Dropdown Structure -->
                 <ul id='dropdownfirst' class='dropdown-content dropdownmenu bgblur'>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li><a href="{{ path('setting_show', {'id': app.user.id}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
+                        {% if app.user.profile == false %}
+                            <li><a href="{{ path('setting_new') }}" class="white-text">Créer votro profile </a></li>
+                        {% else %}
+                            <li><a href="{{ path('setting_show', {'id': app.user.profile}) }}" class="white-text">{{ 'profil'|trans }} </a></li>
+                        {% endif %}
                         <li><a href="{{ path('address_new') }}" class="white-text">Ajouter une adresse</a></li>
                         <li><a href="{{ path('user_edit') }}" class="white-text">Modifer Email</a></li>
                         <li><a href="{{ path('user_change_password') }}" class="white-text">Changer mot de passe </a></li>
                         <li><a href="{{ path('app_logout') }}" class="white-text"><i class="material-icons">lock</i>{{ 'menu.logout'|trans }}</a></li>
                     {% else %}
-                        test
                     {% endif %}
                 </ul>
 
                 <ul id='dropdown2' class='dropdown-content dropdownmenu2 bgblur'>
                     <li><a href="{{ path('app_bookingartists') }}" class="white-text">{{ 'bookingartists'|trans }}</a></li>
-                    <li><a href="http://localhost:3000/#/events" class="white-text">{{ 'evenements'|trans }}</a></li>
+                    <li><a href="{{ path('event_index') }}" class="white-text">{{ 'evenements'|trans }}</a></li>
                 </ul>
             </div>
         </nav>
