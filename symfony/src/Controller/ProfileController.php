@@ -3,15 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Profile;
-use App\Entity\User;
 use App\Form\ProfileType;
 use App\Repository\AddressRepository;
 use App\Repository\EventRepository;
 use App\Repository\ProfileRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,7 +59,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="setting_show", methods={"GET"}, requirements={"id":"\d+"})
+     * @Route("/{id}", name="setting_show", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
     public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response
