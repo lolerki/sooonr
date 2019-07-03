@@ -24,6 +24,9 @@
                         <li><a href="{{ path('app_about') }}">{{ 'about'|trans }}</a></li>
                         <li><a href="{{ path('app_contact') }}">{{ 'title.contact'|trans }}</a></li>
                         <li><a class='dropdown-trigger' href='#!' data-target='dropdownfirst'><i class="material-icons left">person</i> <span>{{ app.user.email }}</span></a></li>
+                        {% if app.user.roles == '["ROLE_ADMIN"]' %}
+                            <li><a class='dropdown-trigger' href='#!' data-target='dropdowntree'><i class="material-icons left">settings</i> <span></span></a></li>
+                        {% endif %}
                     {% else %}
                         <li><a class='dropdown-trigger' href="#!" data-target='dropdown2'>{{ 'booking'|trans }}</a></li>
                         <li><a href="{{ path('app_about') }}">{{ 'about'|trans }}</a></li>
@@ -51,6 +54,12 @@
                 <ul id='dropdown2' class='dropdown-content dropdownmenu2 bgblur'>
                     <li><a href="{{ path('app_bookingartists') }}" class="white-text">{{ 'bookingartists'|trans }}</a></li>
                     <li><a href="{{ path('event_index') }}" class="white-text">{{ 'evenements'|trans }}</a></li>
+                </ul>
+
+                <ul id='dropdowntree' class='dropdown-content dropdownmenu2 bgblur'>
+                    <li><a href="{{ path('setting_index') }}" class="white-text">Profiles</a></li>
+                    <li><a href="{{ path('address_index') }}" class="white-text">Adresses</a></li>
+                    <li><a href="{{ path('bill_index') }}" class="white-text">Adresses</a></li>
                 </ul>
             </div>
         </nav>
