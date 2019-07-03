@@ -25,7 +25,7 @@ class AddressFixtures extends Fixture implements DependentFixtureInterface
                 ->setStreet($faker->streetName)
                 ->setStreetLine2($faker->streetAddress)
                 ->setCity($faker->city)
-                ->setZipCode($faker->postcode)
+                ->setZipCode($faker->numberBetween(60123, 93123))
                 ->setCountry($faker->country)
                 ->setIdUser($user);
             $manager->persist($address);

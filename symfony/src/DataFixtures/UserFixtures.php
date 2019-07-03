@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
 
         $user = (new User())
-            ->setEmail('virgilmeaup@hotmail.fr')
+            ->setEmail('test@esgi.fr')
             ->setFirstName($faker->firstName)
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword(password_hash($test_password, PASSWORD_BCRYPT));
