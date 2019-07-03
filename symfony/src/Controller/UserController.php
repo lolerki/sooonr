@@ -22,6 +22,7 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/edit", methods={"GET", "POST"}, name="user_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request): Response
     {

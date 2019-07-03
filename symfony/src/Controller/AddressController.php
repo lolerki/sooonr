@@ -36,6 +36,7 @@ class AddressController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
       
         $address = new Address();
         $form = $this->createForm(AddressType::class, $address);
@@ -43,10 +44,11 @@ class AddressController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager = $this->getDoctrine()->getManager();
+                $address->setIdUser($user);
                 $entityManager->persist($address);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('profile_show');
+                return $this->redirectToRoute('setting_show');
             }
 
         return $this->render('address/new.html.twig', [

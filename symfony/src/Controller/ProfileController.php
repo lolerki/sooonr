@@ -21,7 +21,7 @@ class ProfileController extends AbstractController
 {
     /**
      * @Route("/", name="setting_index", methods={"GET"})
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(ProfileRepository $profileRepository): Response
     {
@@ -37,7 +37,7 @@ class ProfileController extends AbstractController
     public function new(Request $request): Response
     {
         $profile = new Profile();
-        $user = $this->get('session')->get('loginUserId');
+        $user = $this->getUser();
 
         $form = $this->createForm(ProfileType::class, $profile);
 
@@ -45,10 +45,11 @@ class ProfileController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $profile->setIdUser($user);
             $entityManager->persist($profile);
             $entityManager->flush();
 
-            return $this->redirectToRoute('profile_index');
+            return $this->redirectToRoute('setting_index');
         }
 
         return $this->render('profile/new.html.twig', [
