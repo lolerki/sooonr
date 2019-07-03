@@ -4,6 +4,9 @@ import { List, Datagrid, TextField, NumberField } from 'react-admin';
 export const EventsList = props => (
     <List {...props} style={{marginTop: 50 + "px"}}>
         <Datagrid rowClick="edit">
+
+            <NumberField source="id" label="ID"/>
+
             <TextField source="title" />
             <TextField source="description" />
             <TextField source="createAt" />

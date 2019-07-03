@@ -3,29 +3,28 @@
 namespace App\Controller;
 
 use App\Entity\Profile;
-use App\Entity\User;
 use App\Form\ProfileType;
 use App\Repository\AddressRepository;
 use App\Repository\EventRepository;
 use App\Repository\ProfileRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
+
 
 
 /**
- * @Route("/profile")
+ * @Route("/setting")
  */
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/", name="profile_index", methods={"GET"})
-     * @IsGranted("ROLE_USER")
+     * @Route("/", name="setting_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(ProfileRepository $profileRepository): Response
     {
@@ -35,24 +34,23 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="profile_new", methods={"GET","POST"})
+     * @Route("/new", name="setting_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
         $profile = new Profile();
-        $user = $this->get('session')->get('loginUserId');
-
+        $user = $this->getUser();
         $form = $this->createForm(ProfileType::class, $profile);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $profile->setIdUser($user);
             $entityManager->persist($profile);
             $entityManager->flush();
 
-            return $this->redirectToRoute('profile_index');
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('profile/new.html.twig', [
@@ -63,18 +61,13 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="profile_show", methods={"GET"})
+     * @Route("/{id}", name="setting_show", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
-    public function show(Profile $profile, EventRepository $eventRepository, ProfileRepository $profileRepository, AddressRepository $addressRepository): Response
+    public function show(Profile $profile, EventRepository $eventRepository, AddressRepository $addressRepository, ProfileRepository $profileRepository): Response
     {
         $user = $this->getUser();
-        $profileexist = $profileRepository->findby([
-            'id_user' => $user,
-        ]);
-        if($profileexist == null){
-            return $this->redirectToRoute('profile_new');
-        }
+
         return $this->render('profile/show.html.twig', [
             'profile' => $profile,
             'events' => $eventRepository->findby([
@@ -86,8 +79,9 @@ class ProfileController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/{id}/edit", name="profile_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="setting_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Profile $profile): Response
@@ -110,7 +104,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="profile_delete", methods={"DELETE"})
+     * @Route("/{id}", name="setting_delete", methods={"DELETE"})
      * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Profile $profile): Response

@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
@@ -40,19 +41,25 @@ class EventController extends AbstractController
     public function new(Request $request): Response
     {
 
-        $user = $this->get('session')->get('loginUserId');
+        $user = $this->getUser();
 
-        $form = $this->createForm(EventType::class, $user);
-
+        $event = new Event();
+        $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $event->setIdUser($user);
+            $entityManager->persist($event);
+            $entityManager->flush();
 
             return $this->redirectToRoute('event_index');
         }
 
         return $this->render('event/new.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 

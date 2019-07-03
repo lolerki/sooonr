@@ -3,9 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Address;
+
+
+use App\Entity\User;
 use App\Form\AddressType;
 use App\Repository\AddressRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,17 +42,20 @@ class AddressController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
       
         $address = new Address();
+
         $form = $this->createForm(AddressType::class, $address);
         $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager = $this->getDoctrine()->getManager();
+                $address->setIdUser($user);
                 $entityManager->persist($address);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('profile_show');
+                return $this->redirectToRoute('setting_show');
             }
 
         return $this->render('address/new.html.twig', [

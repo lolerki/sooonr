@@ -19,10 +19,10 @@ class ProfileRepository extends ServiceEntityRepository
         parent::__construct($registry, Profile::class);
     }
 
-    // /**
-    //  * @return Profile[] Returns an array of Profile objects
-    //  */
-    /*
+     /**
+      * @return Profile[] Returns an array of Profile objects
+      */
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('p')
@@ -34,9 +34,8 @@ class ProfileRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
+
     public function findOneBySomeField($value): ?Profile
     {
         return $this->createQueryBuilder('p')
@@ -46,5 +45,6 @@ class ProfileRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
+
 }

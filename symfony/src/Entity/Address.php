@@ -55,7 +55,7 @@ class Address
     private $street;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"address_get_collection","address_post_collection","address_get_item","address_put_item","user_put_item"})
      */
     private $street_line2;
@@ -91,7 +91,7 @@ class Address
     private $bills;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
