@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body id="sample">
   <div class="textColumn">
     <h1>Congratulations!</h1>
-    <p>Your Docker Container is now running in Elastic Beanstalk on your own dedicated environment in the AWS Cloud.</p>
+    <p>Vous avez créé un pipeline qui a extrait cette application source de GitHub et vous l'avez déployé dans une instance Amazon EC2 au moyen d'AWS Elastic Beanstalk. Vous vous rapprochez d'une étape de l'adoption du déploiement continu !</p>
   </div>
   
   <div class="linksColumn">
