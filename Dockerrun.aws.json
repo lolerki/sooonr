@@ -4,7 +4,7 @@
     {
       "name": "php-app",
       "host": {
-        "sourcePath": "/var/app/current/php-app"
+        "sourcePath": "/var/app/current/symfony"
       }
     },
     {
